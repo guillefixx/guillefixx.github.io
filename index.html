@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Guillermo Figueras - Full Stack Developer con 8 años de experiencia en React, TypeScript, Node.js, React Native y SQL. Apasionado por la IA.">
+    <meta name="description" content="Guillermo Figueras - Full Stack Developer with 8 years of experience in React, TypeScript, Node.js, React Native and SQL. Passionate about AI.">
     <meta name="author" content="Guillermo Figueras">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Guillermo Figueras - Full Stack Developer">
-    <meta property="og:description" content="Full Stack Developer con 8 años de experiencia. Especializado en React, TypeScript, Node.js y React Native.">
-    
+    <meta property="og:description" content="Full Stack Developer with 8 years of experience. Specialised in React, TypeScript, Node.js and React Native.">
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Guillermo Figueras - Full Stack Developer">
-    <meta name="twitter:description" content="Full Stack Developer con 8 años de experiencia. Especializado en React, TypeScript, Node.js y React Native.">
-    
+    <meta name="twitter:description" content="Full Stack Developer with 8 years of experience. Specialised in React, TypeScript, Node.js and React Native.">
+
     <title>Guillermo Figueras - Full Stack Developer</title>
-    
+
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>👨‍💻</text></svg>">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
+
     <style>
         /* Custom animations and styles */
         @media (prefers-reduced-motion: reduce) {
@@ -36,44 +36,42 @@
                 transition-duration: 0.01ms !important;
             }
         }
-        
+
         .fade-in-up {
             opacity: 0;
             transform: translateY(2rem);
             transition: opacity 0.7s ease-out, transform 0.7s ease-out;
         }
-        
+
         .fade-in-up.revealed {
             opacity: 1;
             transform: translateY(0);
         }
-        
+
         .tech-badge {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
             border: 1px solid rgba(59, 130, 246, 0.3);
         }
-        
+
         .project-card {
             background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(31, 41, 55, 0.8) 100%);
             backdrop-filter: blur(10px);
         }
-        
+
         .glow-effect {
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
         }
-        
+
         .nav-glass {
             background: rgba(3, 7, 18, 0.8);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
-        
-        /* Smooth scroll offset for fixed nav */
+
         section {
             scroll-margin-top: 5rem;
         }
-        
-        /* Placeholder image styling */
+
         .placeholder-img {
             background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
             display: flex;
@@ -82,10 +80,56 @@
             font-weight: 600;
             color: #9ca3af;
         }
+
+        /* Slider */
+        .js-slider-img {
+            transition: opacity 0.4s ease;
+        }
+        .js-slider-arrow {
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .js-slider:hover .js-slider-arrow,
+        .js-slider:focus-within .js-slider-arrow {
+            opacity: 1;
+        }
+        .js-dot {
+            transition: all 0.25s ease;
+        }
+        .js-dot.active {
+            width: 1.75rem;
+            background: linear-gradient(90deg, #3b82f6, #a855f7);
+        }
+
+        /* Lightbox */
+        #lightbox {
+            transition: opacity 0.25s ease;
+        }
+        #lightbox img.lb-img {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Language flags */
+        .lang-btn {
+            line-height: 1;
+            filter: grayscale(20%);
+            transition: filter 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+        }
+        .lang-btn[aria-pressed="false"] {
+            opacity: 0.4;
+        }
+        .lang-btn[aria-pressed="true"] {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+        .lang-btn:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body class="bg-gray-950 text-gray-100 font-sans antialiased">
-    
+
     <!-- Navigation -->
     <nav id="navbar" class="fixed top-0 w-full z-50 nav-glass border-b border-gray-800 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,35 +139,45 @@
                         GF
                     </a>
                 </div>
-                
+
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#inicio" class="nav-link text-gray-300 hover:text-blue-400 transition-colors duration-200">Inicio</a>
-                    <a href="#sobre-mi" class="nav-link text-gray-300 hover:text-blue-400 transition-colors duration-200">Sobre mí</a>
-                    <a href="#proyectos" class="nav-link text-gray-300 hover:text-blue-400 transition-colors duration-200">Proyectos</a>
-                    <a href="#contacto" class="nav-link text-gray-300 hover:text-blue-400 transition-colors duration-200">Contacto</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#inicio" class="nav-link text-gray-300 hover:text-blue-400 transition-colors duration-200" data-i18n="nav.home">Home</a>
+                    <a href="#sobre-mi" class="nav-link text-gray-300 hover:text-blue-400 transition-colors duration-200" data-i18n="nav.about">About</a>
+                    <a href="#proyectos" class="nav-link text-gray-300 hover:text-blue-400 transition-colors duration-200" data-i18n="nav.projects">Projects</a>
+                    <a href="#contacto" class="nav-link text-gray-300 hover:text-blue-400 transition-colors duration-200" data-i18n="nav.contact">Contact</a>
+
+                    <!-- Language toggle -->
+                    <div class="flex items-center space-x-2 pl-2 border-l border-gray-700/60" role="group" aria-label="Language selector">
+                        <button type="button" class="lang-btn text-2xl" data-lang="en" aria-pressed="true" aria-label="English">🇬🇧</button>
+                        <button type="button" class="lang-btn text-2xl" data-lang="es" aria-pressed="false" aria-label="Español">🇪🇸</button>
+                    </div>
                 </div>
-                
+
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden">
+                <div class="md:hidden flex items-center space-x-3">
+                    <div class="flex items-center space-x-1" role="group" aria-label="Language selector">
+                        <button type="button" class="lang-btn text-xl" data-lang="en" aria-pressed="true" aria-label="English">🇬🇧</button>
+                        <button type="button" class="lang-btn text-xl" data-lang="es" aria-pressed="false" aria-label="Español">🇪🇸</button>
+                    </div>
                     <button id="mobile-menu-button" class="text-gray-300 hover:text-blue-400 focus:outline-none">
                         <i class="fas fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
         </div>
-        
+
         <!-- Mobile Navigation -->
         <div id="mobile-menu" class="hidden md:hidden border-t border-gray-800">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#inicio" class="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-900 rounded-md transition-colors duration-200">Inicio</a>
-                <a href="#sobre-mi" class="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-900 rounded-md transition-colors duration-200">Sobre mí</a>
-                <a href="#proyectos" class="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-900 rounded-md transition-colors duration-200">Proyectos</a>
-                <a href="#contacto" class="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-900 rounded-md transition-colors duration-200">Contacto</a>
+                <a href="#inicio" class="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-900 rounded-md transition-colors duration-200" data-i18n="nav.home">Home</a>
+                <a href="#sobre-mi" class="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-900 rounded-md transition-colors duration-200" data-i18n="nav.about">About</a>
+                <a href="#proyectos" class="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-900 rounded-md transition-colors duration-200" data-i18n="nav.projects">Projects</a>
+                <a href="#contacto" class="block px-3 py-2 text-gray-300 hover:text-blue-400 hover:bg-gray-900 rounded-md transition-colors duration-200" data-i18n="nav.contact">Contact</a>
             </div>
         </div>
     </nav>
-    
+
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
@@ -135,45 +189,45 @@
                             Guillermo Figueras
                         </span>
                     </h1>
-                    <h2 class="text-2xl sm:text-3xl md:text-4xl text-gray-300 mb-8 font-light">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl text-gray-300 mb-8 font-light" data-i18n="hero.role">
                         Full Stack Developer
                     </h2>
-                    <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed">
-                        8 años de experiencia creando soluciones tecnológicas innovadoras. 
-                        Especializado en desarrollo web y móvil, con una pasión por la inteligencia artificial.
+                    <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed" data-i18n="hero.desc">
+                        8 years of experience building innovative technological solutions.
+                        Specialised in web and mobile development, with a passion for artificial intelligence.
                     </p>
                     <a href="#sobre-mi" class="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-200">
-                        <span class="mr-2">Descubre más</span>
+                        <span class="mr-2" data-i18n="hero.cta">Discover more</span>
                         <i class="fas fa-arrow-down animate-bounce"></i>
                     </a>
                 </div>
             </div>
         </section>
-        
+
         <!-- About Section -->
         <section id="sobre-mi" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">
-                    <span class="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                        Sobre mí
+                    <span class="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent" data-i18n="about.title">
+                        About me
                     </span>
                 </h2>
-                
+
                 <div class="project-card rounded-2xl p-8 md:p-12 border border-gray-800 max-w-4xl mx-auto fade-in-up">
-                    <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
-                        Soy un <strong class="text-blue-400">desarrollador web full stack</strong> con 8 años de experiencia 
-                        construyendo aplicaciones escalables y eficientes. Me especializo en crear experiencias de usuario 
-                        excepcionales utilizando las últimas tecnologías del ecosistema JavaScript.
+                    <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed" data-i18n="about.p1">
+                        I am a <strong class="text-blue-400">full stack web developer</strong> with 8 years of experience
+                        building scalable and efficient applications. I specialise in creating exceptional user experiences
+                        using the latest technologies from the JavaScript ecosystem.
                     </p>
-                    
-                    <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed">
-                        Mi experiencia abarca desde el desarrollo de aplicaciones móviles multiplataforma hasta 
-                        sistemas backend robustos. Estoy <strong class="text-purple-400">apasionado por la inteligencia artificial</strong> 
-                        y siempre busco integrar soluciones inteligentes en mis proyectos.
+
+                    <p class="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed" data-i18n="about.p2">
+                        My experience ranges from cross-platform mobile app development to robust backend systems.
+                        I am <strong class="text-purple-400">passionate about artificial intelligence</strong>
+                        and always look to integrate intelligent solutions into my projects.
                     </p>
-                    
+
                     <div class="mt-10">
-                        <h3 class="text-2xl font-semibold mb-6 text-gray-200">Tecnologías principales</h3>
+                        <h3 class="text-2xl font-semibold mb-6 text-gray-200" data-i18n="about.techTitle">Main technologies</h3>
                         <div class="flex flex-wrap gap-3">
                             <span class="tech-badge px-4 py-2 rounded-full text-blue-300 font-medium">
                                 <i class="fab fa-react mr-2"></i>React
@@ -191,29 +245,29 @@
                                 <i class="fas fa-database mr-2"></i>SQL
                             </span>
                             <span class="tech-badge px-4 py-2 rounded-full text-purple-400 font-medium">
-                                <i class="fas fa-brain mr-2"></i>AI/ML
+                                <i class="fas fa-brain mr-2"></i>AI/LLM
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- Projects Section -->
         <section id="proyectos" class="py-20 px-4 sm:px-6 lg:px-8">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">
-                    <span class="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                        Proyectos
+                    <span class="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent" data-i18n="projects.title">
+                        Projects
                     </span>
                 </h2>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
                     <!-- Project 1: Rawr -->
                     <article class="project-card rounded-2xl overflow-hidden border border-gray-800 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl fade-in-up group">
                         <div class="h-64 flex items-center justify-center bg-gray-900">
-                            <img src="https://play-lh.googleusercontent.com/odAS_dWvcoPL-rnq9T6O919XGkqDQdFpRgYgfiio2toLuijlgsIBmQxM95nrP9k-PWAWmTcqiUoBKhOtx0yeKQ=w480-h960-rw" 
-                                 alt="Rawr app icon" 
+                            <img src="https://play-lh.googleusercontent.com/odAS_dWvcoPL-rnq9T6O919XGkqDQdFpRgYgfiio2toLuijlgsIBmQxM95nrP9k-PWAWmTcqiUoBKhOtx0yeKQ=w480-h960-rw"
+                                 alt="Rawr app icon"
                                  class="w-48 h-48 object-contain rounded-2xl"
                                  loading="lazy">
                         </div>
@@ -221,10 +275,10 @@
                             <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-100 group-hover:text-blue-400 transition-colors duration-200">
                                 Rawr
                             </h3>
-                            <p class="text-gray-400 mb-6 leading-relaxed">
-                                Aplicación de redes sociales donde los usuarios suben imitaciones de animales. 
-                                Una plataforma divertida e interactiva para compartir contenido creativo y conectar 
-                                con una comunidad de amantes de los animales.
+                            <p class="text-gray-400 mb-6 leading-relaxed" data-i18n="proj.rawr.desc">
+                                A social network app where users upload animal impersonations.
+                                A fun, interactive platform to share creative content and connect
+                                with a community of animal lovers.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-6">
                                 <span class="bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full text-sm font-medium border border-cyan-500/30">
@@ -234,33 +288,33 @@
                                     Expo
                                 </span>
                             </div>
-                            <a href="https://play.google.com/store/apps/details?id=com.guillefix.rawr" 
-                               target="_blank" 
+                            <a href="https://play.google.com/store/apps/details?id=com.guillefix.rawr"
+                               target="_blank"
                                rel="noopener noreferrer"
                                class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg text-white font-medium hover:from-blue-500 hover:to-purple-500 transition-all duration-200 group-hover:glow-effect">
                                 <i class="fab fa-google-play mr-2"></i>
-                                Ver en Google Play
+                                <span data-i18n="proj.cta.googleplay">View on Google Play</span>
                                 <i class="fas fa-external-link-alt ml-2 text-sm"></i>
                             </a>
                         </div>
                     </article>
-                    
+
                     <!-- Project 2: Frases de Políticos Españoles -->
                     <article class="project-card rounded-2xl overflow-hidden border border-gray-800 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl fade-in-up group">
                         <div class="h-64 flex items-center justify-center bg-gray-900">
-                            <img src="https://play-lh.googleusercontent.com/MiE8uebwOzFE9X4RA0D9ZamgRNx7g253mOV_nDXw4gxbZKqGvOTErjEbUlor4BR8yjER=w480-h960-rw" 
-                                 alt="Frases de Políticos Españoles app icon" 
+                            <img src="https://play-lh.googleusercontent.com/MiE8uebwOzFE9X4RA0D9ZamgRNx7g253mOV_nDXw4gxbZKqGvOTErjEbUlor4BR8yjER=w480-h960-rw"
+                                 alt="Frases de Políticos Españoles app icon"
                                  class="w-48 h-48 object-contain rounded-2xl"
                                  loading="lazy">
                         </div>
                         <div class="p-6 md:p-8">
-                            <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-100 group-hover:text-purple-400 transition-colors duration-200">
-                                Frases de Políticos Españoles
+                            <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-100 group-hover:text-purple-400 transition-colors duration-200" data-i18n="proj.politicos.title">
+                                Spanish Politicians' Quotes
                             </h3>
-                            <p class="text-gray-400 mb-6 leading-relaxed">
-                                Recopilatorio de las frases más absurdas y divertidas de políticos españoles. 
-                                Entretenimiento y humor político en tu bolsillo. Una forma ligera de seguir 
-                                la actualidad política con una sonrisa.
+                            <p class="text-gray-400 mb-6 leading-relaxed" data-i18n="proj.politicos.desc">
+                                A collection of the most absurd and funny quotes from Spanish politicians.
+                                Political entertainment and humor right in your pocket. A light way to
+                                follow the current political scene with a smile.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-6">
                                 <span class="bg-orange-500/10 text-orange-400 px-3 py-1 rounded-full text-sm font-medium border border-orange-500/30">
@@ -270,22 +324,22 @@
                                     Android
                                 </span>
                             </div>
-                            <a href="https://play.google.com/store/apps/details?id=com.guillefix.frasesdepolticosespanoles" 
-                               target="_blank" 
+                            <a href="https://play.google.com/store/apps/details?id=com.guillefix.frasesdepolticosespanoles"
+                               target="_blank"
                                rel="noopener noreferrer"
                                class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white font-medium hover:from-purple-500 hover:to-pink-500 transition-all duration-200 group-hover:glow-effect">
                                 <i class="fab fa-google-play mr-2"></i>
-                                Ver en Google Play
+                                <span data-i18n="proj.cta.googleplay">View on Google Play</span>
                                 <i class="fas fa-external-link-alt ml-2 text-sm"></i>
                             </a>
                         </div>
                     </article>
-                    
+
                     <!-- Project 3: Los Canteros -->
                     <article class="project-card rounded-2xl overflow-hidden border border-gray-800 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl fade-in-up group">
                         <div class="h-64 flex items-center justify-center bg-gray-900">
-                            <img src="https://play-lh.googleusercontent.com/fo2iez0NnzJOEYZ8BmrDOueBBPgXoXiRTigMcWkoZiMxbD81G_glkxFINS01D5mWvxg=w480-h960-rw" 
-                                 alt="Los Canteros app icon" 
+                            <img src="https://play-lh.googleusercontent.com/fo2iez0NnzJOEYZ8BmrDOueBBPgXoXiRTigMcWkoZiMxbD81G_glkxFINS01D5mWvxg=w480-h960-rw"
+                                 alt="Los Canteros app icon"
                                  class="w-48 h-48 object-contain rounded-2xl"
                                  loading="lazy">
                         </div>
@@ -293,69 +347,143 @@
                             <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-100 group-hover:text-yellow-400 transition-colors duration-200">
                                 Los Canteros
                             </h3>
-                            <p class="text-gray-400 mb-6 leading-relaxed">
-                                Recopilación de más de 700 frases míticas de Los Simpson. 
-                                Disfruta de las citas más icónicas y divertidas de la serie de animación 
-                                más longeva de la televisión. Humor clásico en tu bolsillo.
+                            <p class="text-gray-400 mb-6 leading-relaxed" data-i18n="proj.canteros.desc">
+                                A collection of more than 700 legendary quotes from The Simpsons.
+                                Enjoy the most iconic and funny lines from the longest-running animated
+                                series on television. Classic humor right in your pocket.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-6">
                                 <span class="bg-yellow-500/10 text-yellow-400 px-3 py-1 rounded-full text-sm font-medium border border-yellow-500/30">
                                     Android
                                 </span>
-                                <span class="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full text-sm font-medium border border-blue-500/30">
-                                    Java
+                                <span class="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-sm font-medium border border-purple-500/30">
+                                    Kotlin
                                 </span>
                             </div>
-                            <a href="https://play.google.com/store/apps/details?id=com.guillefix.loscanteros" 
-                               target="_blank" 
+                            <a href="https://play.google.com/store/apps/details?id=com.guillefix.loscanteros"
+                               target="_blank"
                                rel="noopener noreferrer"
                                class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-lg text-white font-medium hover:from-yellow-500 hover:to-orange-500 transition-all duration-200 group-hover:glow-effect">
                                 <i class="fab fa-google-play mr-2"></i>
-                                Ver en Google Play
+                                <span data-i18n="proj.cta.googleplay">View on Google Play</span>
                                 <i class="fas fa-external-link-alt ml-2 text-sm"></i>
                             </a>
+                        </div>
+                    </article>
+
+                    <!-- Project 4: Backoffice de Los Canteros -->
+                    <article class="project-card rounded-2xl overflow-hidden border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl fade-in-up group">
+                        <div class="js-slider relative h-64 bg-gray-900 overflow-hidden p-3"
+                             data-images='["img/frontend1.png","img/frontend2.png","img/frontend3.png","img/frontend4.png"]'
+                             data-alt="Los Canteros Backoffice screenshot">
+                            <img class="js-slider-img w-full h-full object-contain object-top rounded-md" src="img/frontend1.png" alt="Los Canteros Backoffice screenshot" loading="lazy">
+                            <button type="button" class="js-slider-prev js-slider-arrow absolute top-1/2 left-2 -translate-y-1/2 w-9 h-9 rounded-full bg-gray-900/70 hover:bg-gray-800 text-white flex items-center justify-center" aria-label="Previous image">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button type="button" class="js-slider-next js-slider-arrow absolute top-1/2 right-2 -translate-y-1/2 w-9 h-9 rounded-full bg-gray-900/70 hover:bg-gray-800 text-white flex items-center justify-center" aria-label="Next image">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="js-slider-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center space-x-2"></div>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-100 group-hover:text-cyan-400 transition-colors duration-200" data-i18n="proj.back.title">
+                                Los Canteros Backoffice
+                            </h3>
+                            <p class="text-gray-400 mb-6 leading-relaxed" data-i18n="proj.back.desc">
+                                Internal backoffice to manage my sound apps: create new flavors, add characters,
+                                and add or edit audio files with an Audacity-style waveform viewer.
+                                A <strong class="text-cyan-400">POC built entirely with AI</strong> using the GLM,
+                                MiniMax and DeepSeek models.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full text-sm font-medium border border-cyan-500/30">React</span>
+                                <span class="bg-green-500/10 text-green-400 px-3 py-1 rounded-full text-sm font-medium border border-green-500/30">Node.js</span>
+                                <span class="bg-gray-500/10 text-gray-300 px-3 py-1 rounded-full text-sm font-medium border border-gray-500/30">Express</span>
+                                <span class="bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-sm font-medium border border-purple-500/30">Vite</span>
+                                <span class="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full text-sm font-medium border border-blue-500/30">TypeScript</span>
+                                <span class="bg-fuchsia-500/10 text-fuchsia-400 px-3 py-1 rounded-full text-sm font-medium border border-fuchsia-500/30" data-i18n="proj.badge.aipoc">AI</span>
+                            </div>
+                            <button type="button" class="js-open-lightbox inline-flex items-center px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg text-white font-medium hover:from-cyan-500 hover:to-blue-500 transition-all duration-200 group-hover:glow-effect">
+                                <i class="fas fa-images mr-2"></i>
+                                <span data-i18n="proj.cta.screenshots">View screenshots</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Project 5: HomeQuest -->
+                    <article class="project-card rounded-2xl overflow-hidden border border-gray-800 hover:border-green-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl fade-in-up group">
+                        <div class="js-slider relative h-64 bg-gray-900 overflow-hidden p-3"
+                             data-images='["img/homequest1.jpg","img/homequest2.jpg","img/homequest3.jpg"]'
+                             data-alt="HomeQuest screenshot">
+                            <img class="js-slider-img w-full h-full object-contain object-top rounded-md" src="img/homequest1.jpg" alt="HomeQuest screenshot" loading="lazy">
+                            <button type="button" class="js-slider-prev js-slider-arrow absolute top-1/2 left-2 -translate-y-1/2 w-9 h-9 rounded-full bg-gray-900/70 hover:bg-gray-800 text-white flex items-center justify-center" aria-label="Previous image">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button type="button" class="js-slider-next js-slider-arrow absolute top-1/2 right-2 -translate-y-1/2 w-9 h-9 rounded-full bg-gray-900/70 hover:bg-gray-800 text-white flex items-center justify-center" aria-label="Next image">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <div class="js-slider-dots absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center space-x-2"></div>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <h3 class="text-2xl md:text-3xl font-bold mb-4 text-gray-100 group-hover:text-green-400 transition-colors duration-200">
+                                HomeQuest
+                            </h3>
+                            <p class="text-gray-400 mb-6 leading-relaxed" data-i18n="proj.homequest.desc">
+                                A <strong class="text-green-400">React Native</strong> app to clean the house with
+                                <strong class="text-green-400">gamification</strong> elements: daily tasks, a calendar,
+                                and filters by room and frequency. A <strong class="text-cyan-400">POC built with
+                                Claude Opus and Sonnet</strong>.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="bg-cyan-500/10 text-cyan-400 px-3 py-1 rounded-full text-sm font-medium border border-cyan-500/30">React Native</span>
+                                <span class="bg-fuchsia-500/10 text-fuchsia-400 px-3 py-1 rounded-full text-sm font-medium border border-fuchsia-500/30" data-i18n="proj.badge.aipoc">AI</span>
+                            </div>
+                            <button type="button" class="js-open-lightbox inline-flex items-center px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 rounded-lg text-white font-medium hover:from-green-500 hover:to-emerald-500 transition-all duration-200 group-hover:glow-effect">
+                                <i class="fas fa-images mr-2"></i>
+                                <span data-i18n="proj.cta.screenshots">View screenshots</span>
+                            </button>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
-        
+
         <!-- Contact Section -->
         <section id="contacto" class="py-20 px-4 sm:px-6 lg:px-8 mb-20">
             <div class="max-w-7xl mx-auto">
                 <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 fade-in-up">
-                    <span class="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-                        Contacto
+                    <span class="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent" data-i18n="contact.title">
+                        Contact
                     </span>
                 </h2>
-                
+
                 <div class="max-w-4xl mx-auto">
-                    <p class="text-xl text-gray-400 text-center mb-12 fade-in-up">
-                        ¿Tienes un proyecto en mente o quieres colaborar? ¡Hablemos!
+                    <p class="text-xl text-gray-400 text-center mb-12 fade-in-up" data-i18n="contact.desc">
+                        Have a project in mind or want to collaborate? Let's talk!
                     </p>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <!-- Email -->
-                        <a href="mailto:guillermo.figueras@gmail.com" 
+                        <a href="mailto:guillermo.figueras@gmail.com"
                            class="project-card rounded-xl p-6 border border-gray-800 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl text-center fade-in-up group">
                             <i class="fas fa-envelope text-4xl text-blue-400 mb-4 group-hover:scale-110 transition-transform duration-200"></i>
                             <h3 class="text-xl font-semibold mb-2 text-gray-200">Email</h3>
                             <p class="text-gray-400 text-sm break-all">guillermo.figueras@gmail.com</p>
                         </a>
-                        
+
                         <!-- GitHub -->
-                        <a href="https://github.com/guillefixx/" 
-                           target="_blank" 
+                        <a href="https://github.com/guillefixx/"
+                           target="_blank"
                            rel="noopener noreferrer"
                            class="project-card rounded-xl p-6 border border-gray-800 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl text-center fade-in-up group">
                             <i class="fab fa-github text-4xl text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-200"></i>
                             <h3 class="text-xl font-semibold mb-2 text-gray-200">GitHub</h3>
                             <p class="text-gray-400 text-sm">github.com/guillefixx</p>
                         </a>
-                        
+
                         <!-- LinkedIn -->
-                        <a href="https://www.linkedin.com/in/guillermo-figueras-alba-738226140/" 
-                           target="_blank" 
+                        <a href="https://www.linkedin.com/in/guillermo-figueras-alba-738226140/"
+                           target="_blank"
                            rel="noopener noreferrer"
                            class="project-card rounded-xl p-6 border border-gray-800 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-xl text-center fade-in-up group">
                             <i class="fab fa-linkedin text-4xl text-cyan-400 mb-4 group-hover:scale-110 transition-transform duration-200"></i>
@@ -367,28 +495,127 @@
             </div>
         </section>
     </main>
-    
+
     <!-- Footer -->
     <footer class="border-t border-gray-800 py-8 px-4 sm:px-6 lg:px-8">
         <div class="max-w-7xl mx-auto text-center text-gray-500">
-            <p>&copy; 2026 Guillermo Figueras. Todos los derechos reservados.</p>
+            <p data-i18n="footer.text">&copy; 2026 Guillermo Figueras. All rights reserved.</p>
         </div>
     </footer>
-    
+
     <!-- Scroll to Top Button -->
-    <button id="scroll-to-top" 
+    <button id="scroll-to-top"
             class="fixed bottom-8 right-8 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 rounded-full shadow-lg hover:from-blue-500 hover:to-purple-500 transition-all duration-300 opacity-0 pointer-events-none z-40"
-            aria-label="Volver arriba">
+            aria-label="Scroll to top">
         <i class="fas fa-arrow-up"></i>
     </button>
-    
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="fixed inset-0 z-[60] hidden items-center justify-center bg-black/90 px-4 py-8">
+        <button type="button" id="lb-close" class="absolute top-4 right-4 w-11 h-11 rounded-full bg-gray-800/80 hover:bg-gray-700 text-white text-xl flex items-center justify-center" aria-label="Close">
+            <i class="fas fa-times"></i>
+        </button>
+        <button type="button" id="lb-prev" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-gray-800/80 hover:bg-gray-700 text-white text-2xl flex items-center justify-center" aria-label="Previous image">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button type="button" id="lb-next" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-gray-800/80 hover:bg-gray-700 text-white text-2xl flex items-center justify-center" aria-label="Next image">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        <img id="lb-img" class="lb-img max-w-full max-h-full object-contain rounded-lg" src="" alt="">
+        <div id="lb-dots" class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center space-x-2"></div>
+    </div>
+
     <script>
-        // Intersection Observer for scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
+        // ===== Translations =====
+        const translations = {
+            en: {
+                "nav.home": "Home",
+                "nav.about": "About",
+                "nav.projects": "Projects",
+                "nav.contact": "Contact",
+                "hero.role": "Full Stack Developer",
+                "hero.desc": "8 years of experience building innovative technological solutions. Specialised in web and mobile development, with a passion for artificial intelligence.",
+                "hero.cta": "Discover more",
+                "about.title": "About me",
+                "about.p1": "I am a <strong class=\"text-blue-400\">full stack web developer</strong> with 8 years of experience building scalable and efficient applications. I specialise in creating exceptional user experiences using the latest technologies from the JavaScript ecosystem.",
+                "about.p2": "My experience ranges from cross-platform mobile app development to robust backend systems. I am <strong class=\"text-purple-400\">passionate about artificial intelligence</strong> and always look to integrate intelligent solutions into my projects.",
+                "about.techTitle": "Main technologies",
+                "projects.title": "Projects",
+                "proj.rawr.desc": "A social network app where users upload animal impersonations. A fun, interactive platform to share creative content and connect with a community of animal lovers.",
+                "proj.politicos.title": "Spanish Politicians' Quotes",
+                "proj.politicos.desc": "A collection of the most absurd and funny quotes from Spanish politicians. Political entertainment and humor right in your pocket. A light way to follow the current political scene with a smile.",
+                "proj.canteros.desc": "A collection of more than 700 legendary quotes from The Simpsons. Enjoy the most iconic and funny lines from the longest-running animated series on television. Classic humor right in your pocket.",
+                "proj.back.title": "Los Canteros Backoffice",
+                "proj.back.desc": "Internal backoffice to manage my sound apps: create new flavors, add characters, and add or edit audio files with an Audacity-style waveform viewer. A <strong class=\"text-cyan-400\">POC built entirely with AI</strong> using the GLM, MiniMax and DeepSeek models.",
+                "proj.homequest.desc": "A <strong class=\"text-green-400\">React Native</strong> app to clean the house with <strong class=\"text-green-400\">gamification</strong> elements: daily tasks, a calendar, and filters by room and frequency. A <strong class=\"text-cyan-400\">POC built with Claude Opus and Sonnet</strong>.",
+                "proj.badge.aipoc": "AI",
+                "proj.cta.googleplay": "View on Google Play",
+                "proj.cta.screenshots": "View screenshots",
+                "contact.title": "Contact",
+                "contact.desc": "Have a project in mind or want to collaborate? Let's talk!",
+                "footer.text": "\u00A9 2026 Guillermo Figueras. All rights reserved."
+            },
+            es: {
+                "nav.home": "Inicio",
+                "nav.about": "Sobre mí",
+                "nav.projects": "Proyectos",
+                "nav.contact": "Contacto",
+                "hero.role": "Full Stack Developer",
+                "hero.desc": "8 años de experiencia creando soluciones tecnológicas innovadoras. Especializado en desarrollo web y móvil, con una pasión por la inteligencia artificial.",
+                "hero.cta": "Descubre más",
+                "about.title": "Sobre mí",
+                "about.p1": "Soy un <strong class=\"text-blue-400\">desarrollador web full stack</strong> con 8 años de experiencia construyendo aplicaciones escalables y eficientes. Me especializo en crear experiencias de usuario excepcionales utilizando las últimas tecnologías del ecosistema JavaScript.",
+                "about.p2": "Mi experiencia abarca desde el desarrollo de aplicaciones móviles multiplataforma hasta sistemas backend robustos. Estoy <strong class=\"text-purple-400\">apasionado por la inteligencia artificial</strong> y siempre busco integrar soluciones inteligentes en mis proyectos.",
+                "about.techTitle": "Tecnologías principales",
+                "projects.title": "Proyectos",
+                "proj.rawr.desc": "Aplicación de redes sociales donde los usuarios suben imitaciones de animales. Una plataforma divertida e interactiva para compartir contenido creativo y conectar con una comunidad de amantes de los animales.",
+                "proj.politicos.title": "Frases de Políticos Españoles",
+                "proj.politicos.desc": "Recopilatorio de las frases más absurdas y divertidas de políticos españoles. Entretenimiento y humor político en tu bolsillo. Una forma ligera de seguir la actualidad política con una sonrisa.",
+                "proj.canteros.desc": "Recopilación de más de 700 frases míticas de Los Simpson. Disfruta de las citas más icónicas y divertidas de la serie de animación más longeva de la televisión. Humor clásico en tu bolsillo.",
+                "proj.back.title": "Backoffice de Los Canteros",
+                "proj.back.desc": "Backoffice interno para gestionar mis apps de sonidos: crear nuevos flavors, añadir personajes, y añadir o editar audios con un visor de formas de onda estilo Audacity. Una <strong class=\"text-cyan-400\">POC construida íntegramente con IA</strong> usando los modelos GLM, MiniMax y DeepSeek.",
+                "proj.homequest.desc": "Una app <strong class=\"text-green-400\">React Native</strong> para limpiar la casa con elementos de <strong class=\"text-green-400\">gamificación</strong>: tareas diarias, un calendario y filtros por estancia y frecuencia. Una <strong class=\"text-cyan-400\">POC hecha con Claude Opus y Sonnet</strong>.",
+                "proj.badge.aipoc": "IA",
+                "proj.cta.googleplay": "Ver en Google Play",
+                "proj.cta.screenshots": "Ver capturas",
+                "contact.title": "Contacto",
+                "contact.desc": "¿Tienes un proyecto en mente o quieres colaborar? ¡Hablemos!",
+                "footer.text": "\u00A9 2026 Guillermo Figueras. Todos los derechos reservados."
+            }
         };
-        
+
+        const DEFAULT_LANG = 'en';
+
+        function applyLang(lang) {
+            const dict = translations[lang] || translations[DEFAULT_LANG];
+            document.documentElement.lang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                const value = dict[key];
+                if (value !== undefined) {
+                    el.innerHTML = value;
+                }
+            });
+            document.querySelectorAll('[data-lang]').forEach(btn => {
+                btn.setAttribute('aria-pressed', btn.getAttribute('data-lang') === lang ? 'true' : 'false');
+            });
+            try { localStorage.setItem('lang', lang); } catch (e) {}
+        }
+
+        function getCurrentLang() {
+            try {
+                const saved = localStorage.getItem('lang');
+                if (saved && translations[saved]) return saved;
+            } catch (e) {}
+            return DEFAULT_LANG;
+        }
+
+        document.querySelectorAll('[data-lang]').forEach(btn => {
+            btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+        });
+
+        // ===== Fade-in observer =====
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -397,28 +624,18 @@
                 }
             });
         }, observerOptions);
-        
-        // Observe all fade-in-up elements
         document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-        
-        // Mobile menu toggle
+
+        // ===== Mobile menu =====
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
-        
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when clicking a link
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
-        
-        // Scroll to top button
+
+        // ===== Scroll to top =====
         const scrollToTopButton = document.getElementById('scroll-to-top');
-        
         window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
                 scrollToTopButton.classList.remove('opacity-0', 'pointer-events-none');
@@ -428,30 +645,161 @@
                 scrollToTopButton.classList.remove('opacity-100', 'pointer-events-auto');
             }
         });
-        
-        scrollToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Smooth scroll for navigation links (backup for older browsers)
+        scrollToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
                 if (href !== '#' && href !== '') {
                     e.preventDefault();
                     const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
+                    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
+
+        // ===== Sliders =====
+        const sliders = [];
+        function buildDots(container, count, onDotClick) {
+            container.innerHTML = '';
+            for (let i = 0; i < count; i++) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = 'js-dot h-2 w-2 rounded-full bg-white/40 hover:bg-white/70';
+                dot.setAttribute('aria-label', 'Go to image ' + (i + 1));
+                dot.addEventListener('click', () => onDotClick(i));
+                container.appendChild(dot);
+            }
+        }
+
+        document.querySelectorAll('.js-slider').forEach(sliderEl => {
+            const images = JSON.parse(sliderEl.getAttribute('data-images'));
+            const alt = sliderEl.getAttribute('data-alt') || 'Screenshot';
+            const imgEl = sliderEl.querySelector('.js-slider-img');
+            const dotsEl = sliderEl.querySelector('.js-slider-dots');
+            const state = { images, index: 0, interval: null, hoverPaused: false };
+
+            function render() {
+                imgEl.style.opacity = '0';
+                setTimeout(() => {
+                    imgEl.src = images[state.index];
+                    imgEl.alt = alt + ' ' + (state.index + 1);
+                    imgEl.style.opacity = '1';
+                }, 200);
+                dotsEl.querySelectorAll('.js-dot').forEach((d, i) => d.classList.toggle('active', i === state.index));
+            }
+            function go(i) {
+                state.index = (i + images.length) % images.length;
+                render();
+            }
+            function next() { go(state.index + 1); }
+            function prev() { go(state.index - 1); }
+
+            buildDots(dotsEl, images.length, (i) => { go(i); reset(); });
+
+            sliderEl.querySelector('.js-slider-prev').addEventListener('click', (e) => { e.stopPropagation(); prev(); reset(); });
+            sliderEl.querySelector('.js-slider-next').addEventListener('click', (e) => { e.stopPropagation(); next(); reset(); });
+
+            // Swipe
+            let startX = 0, touchActive = false;
+            sliderEl.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                touchActive = true;
+                state.hoverPaused = true;
+            }, { passive: true });
+            sliderEl.addEventListener('touchend', (e) => {
+                if (!touchActive) return;
+                const diff = e.changedTouches[0].clientX - startX;
+                if (Math.abs(diff) > 40) { diff < 0 ? next() : prev(); }
+                touchActive = false;
+                state.hoverPaused = false;
+                reset();
+            });
+
+            function start() {
+                state.interval = setInterval(() => {
+                    if (!document.hidden && !state.hoverPaused) next();
+                }, 4000);
+            }
+            function stop() { if (state.interval) { clearInterval(state.interval); state.interval = null; } }
+            function reset() { stop(); start(); }
+
+            sliderEl.addEventListener('mouseenter', () => { state.hoverPaused = true; });
+            sliderEl.addEventListener('mouseleave', () => { state.hoverPaused = false; });
+
+            start();
+            sliders.push({ state, go, next, prev, reset });
+        });
+
+        // ===== Lightbox =====
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lb-img');
+        const lbDots = document.getElementById('lb-dots');
+        const lbState = { images: [], index: 0 };
+
+        function lbRender() {
+            lbImg.style.opacity = '0';
+            setTimeout(() => {
+                lbImg.src = lbState.images[lbState.index];
+                lbImg.alt = 'Screenshot ' + (lbState.index + 1);
+                lbImg.style.opacity = '1';
+            }, 150);
+            lbDots.querySelectorAll('.js-dot').forEach((d, i) => d.classList.toggle('active', i === lbState.index));
+        }
+        function lbGo(i) {
+            lbState.index = (i + lbState.images.length) % lbState.images.length;
+            lbRender();
+        }
+        function openLightbox(images, startIndex) {
+            lbState.images = images;
+            lbState.index = startIndex || 0;
+            buildDots(lbDots, images.length, (i) => lbGo(i));
+            lbRender();
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox() {
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        document.querySelectorAll('.js-open-lightbox').forEach((btn) => {
+            btn.addEventListener('click', () => {
+                const card = btn.closest('article');
+                const sliderEl = card.querySelector('.js-slider');
+                const images = JSON.parse(sliderEl.getAttribute('data-images'));
+                const match = sliders.find(s => s.state.images === images);
+                const startIndex = match ? match.state.index : 0;
+                openLightbox(images, startIndex);
+            });
+        });
+
+        document.getElementById('lb-close').addEventListener('click', closeLightbox);
+        document.getElementById('lb-prev').addEventListener('click', () => lbGo(lbState.index - 1));
+        document.getElementById('lb-next').addEventListener('click', () => lbGo(lbState.index + 1));
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+
+        document.addEventListener('keydown', (e) => {
+            if (lightbox.classList.contains('hidden')) return;
+            if (e.key === 'Escape') closeLightbox();
+            else if (e.key === 'ArrowLeft') lbGo(lbState.index - 1);
+            else if (e.key === 'ArrowRight') lbGo(lbState.index + 1);
+        });
+
+        // Lightbox swipe
+        let lbStartX = 0, lbTouchActive = false;
+        lightbox.addEventListener('touchstart', (e) => { lbStartX = e.touches[0].clientX; lbTouchActive = true; }, { passive: true });
+        lightbox.addEventListener('touchend', (e) => {
+            if (!lbTouchActive) return;
+            const diff = e.changedTouches[0].clientX - lbStartX;
+            if (Math.abs(diff) > 40) { diff < 0 ? lbGo(lbState.index + 1) : lbGo(lbState.index - 1); }
+            lbTouchActive = false;
+        });
+
+        // ===== Init =====
+        applyLang(getCurrentLang());
     </script>
 </body>
 </html>
